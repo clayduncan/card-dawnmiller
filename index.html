@@ -49,152 +49,214 @@
         media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#080f1e;
-      --stroke:rgba(192,144,80,.20);
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.70);
-      --btn:#c09050;
-      --btn2:rgba(192,144,80,.12);
-      --shadow:0 26px 80px rgba(0,0,0,.50);
-      --r:22px;
-      --gold:#c09050;
-      --navy:#0b1b3a;
-      --teal:#00a4a6;
-    }
-    *{box-sizing:border-box}
+<style>
+  :root{
+    --cream:#F4F2EC;
+    --cream2:#EDEAE0;
+    --white:#FFFFFF;
+    --navy:#222D51;
+    --navy2:#1a2240;
+    --gold:#C19B6C;
+    --gold-soft:rgba(193,155,108,.16);
+    --text:#222D51;
+    --muted:#6E7A9A;
+    --shadow:0 2px 12px rgba(34,45,81,.09),0 1px 3px rgba(34,45,81,.06);
+    --shadow-lg:0 8px 40px rgba(34,45,81,.13),0 2px 8px rgba(34,45,81,.07);
+    --r:16px;
+    --r-sm:8px;
+    --r-xs:6px;
+  }
+  *{box-sizing:border-box}
 
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(900px 600px at 50% -10%, rgba(11,27,58,.90), transparent 60%),
-        radial-gradient(600px 400px at 80% 100%, rgba(192,144,80,.08), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--cream);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+  }
 
-    .wrap{max-width:460px;margin:0 auto;padding:18px 14px 34px}
+  /* Outer wrapper — no side padding; children manage their own margins */
+  .wrap{max-width:460px;margin:0 auto;padding-bottom:44px}
 
-    .topbar{display:flex;align-items:center;justify-content:space-between;margin:6px 0 16px}
-    .logo img{height:30px;width:auto;display:block}
+  /* ── TOP BAR — navy brand anchor ───────────────────────────────────── */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:13px 18px;
+    background:var(--navy);
+  }
+  /* Make the Princeton logo appear white on the navy bar regardless of
+     its original color — brightness(0) maps all opaque pixels to black,
+     invert(1) flips them to white; transparent pixels are unaffected. */
+  .logo img{
+    height:26px;width:auto;display:block;
+    filter:brightness(0) invert(1);
+    opacity:.88;
+  }
 
-    .sharebtn{
-      display:flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:12px;
-      background:rgba(192,144,80,.10);
-      border:1px solid rgba(192,144,80,.22);
-      box-shadow:0 10px 22px rgba(0,0,0,.25);
-      text-decoration:none;color:#fff;
-      font-weight:900;font-size:13px;letter-spacing:.2px;
-      -webkit-tap-highlight-color: transparent;
-      user-select:none;
-    }
-    .sharebtn svg{
-      width:18px;height:18px;
-      stroke:#fff;stroke-width:2.25;fill:none;
-      stroke-linecap:round;stroke-linejoin:round;
-      opacity:.95;
-    }
+  .sharebtn{
+    display:flex;align-items:center;gap:7px;
+    padding:8px 15px;border-radius:20px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.24);
+    text-decoration:none;color:#fff;
+    font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
+  .sharebtn svg{
+    width:15px;height:15px;
+    stroke:#fff;stroke-width:2.4;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;
+    opacity:.90;
+  }
 
-    .card{
-      background:linear-gradient(160deg, rgba(192,144,80,.07) 0%, rgba(255,255,255,.03) 50%, rgba(11,27,58,.20) 100%);
-      border:1px solid rgba(192,144,80,.22);
-      border-radius:var(--r);
-      padding:18px;
-      box-shadow:var(--shadow);
-    }
+  /* ── MAIN CARD — white, floating on cream ───────────────────────────── */
+  .card{
+    background:var(--white);
+    margin:18px 14px 0;
+    border-radius:var(--r);
+    padding:22px 20px 20px;
+    box-shadow:var(--shadow-lg);
+    border:1px solid rgba(34,45,81,.07);
+  }
 
-    .hero{display:flex;gap:16px;align-items:center}
-    .photo{
-      width:128px;height:128px;border-radius:24px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      overflow:hidden;flex:0 0 128px;
-      box-shadow:0 14px 30px rgba(0,0,0,.38);
-    }
-    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  /* ── HERO — photo + name side by side ─────────────────────────────── */
+  .hero{display:flex;gap:16px;align-items:flex-start}
 
-    h1{margin:0;font-size:26px;line-height:1.08;font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:-.3px}
-    .sub{margin-top:10px;font-size:14px;line-height:1.45;color:var(--muted)}
-    .phone{display:inline-block;margin-top:6px;font-weight:900;color:#fff;text-decoration:none;opacity:.95}
+  .photo{
+    width:110px;height:110px;
+    border-radius:12px;
+    overflow:hidden;flex:0 0 110px;
+    box-shadow:0 4px 18px rgba(34,45,81,.16);
+    border:2px solid var(--white);
+    outline:1px solid rgba(34,45,81,.08);
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Social icons */
-    .social{display:flex;justify-content:center;gap:16px;margin-top:16px}
-    .social a{
-      width:52px;height:52px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 10px 22px rgba(0,0,0,.35);
-      text-decoration:none;
-    }
-    .social svg{width:30px;height:30px;display:block;fill:#fff}
+  /* Name in Playfair Display — the editorial anchor */
+  h1{
+    margin:0;
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:23px;line-height:1.10;
+    font-weight:700;letter-spacing:-.2px;
+    color:var(--navy);
+  }
+  .sub{
+    margin-top:8px;
+    font-size:12.5px;line-height:1.65;
+    color:var(--muted);
+  }
+  /* Phone number gets the gold — the warm invitation to connect */
+  .phone{
+    display:inline-block;margin-top:5px;
+    font-weight:700;font-size:14px;
+    color:var(--gold);text-decoration:none;
+    letter-spacing:.1px;
+  }
 
-    .ig{background: radial-gradient(circle at 30% 110%, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%);}
-    .fb{background:#1877F2;}
-    .in{background:#0A66C2;}
-    .web{background:#0b8a8c;}
-    .star{background:#FBBC04;}
+  /* ── DIVIDER between hero and social ─────────────────────────────── */
+  .social{
+    display:flex;justify-content:flex-start;gap:9px;
+    margin-top:18px;padding-top:18px;flex-wrap:wrap;
+    border-top:1px solid rgba(34,45,81,.08);
+  }
+  .social a{
+    width:42px;height:42px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;
+    box-shadow:0 2px 7px rgba(34,45,81,.13);
+  }
+  .social svg{width:23px;height:23px;display:block;fill:#fff}
 
-    .cta{display:grid;gap:12px;margin-top:18px}
+  /* Platform colors retained — recognition matters */
+  .ig{background:radial-gradient(circle at 30% 110%,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%)}
+  .fb{background:#1877F2}
+  .in{background:#0A66C2}
+  .web{background:var(--navy)}
+  .star{background:#F59E0B}
 
-    .cta-split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:16px;
-    }
-    .btn.small{
-      padding:14px 10px;
-      border-radius:16px;
-      font-size:14px;
-    }
-    .btn{
-      display:flex;align-items:center;justify-content:center;
-      padding:16px 14px;border-radius:16px;
-      text-decoration:none;color:#fff;font-weight:900;
-      border:1px solid rgba(255,255,255,.10);
-      letter-spacing:.4px;
-    }
-    .btn.primary{background:var(--btn)}
-    .btn.secondary{
-      background:rgba(192,144,80,.28);
-      border:1px solid rgba(192,144,80,.45);
-    }
+  /* ── CTA BUTTONS — DMG three-tier hierarchy ─────────────────────── */
+  .cta{display:grid;gap:10px;margin-top:20px}
 
-    /* Review buttons styling */
-    .btn.review-read{
-      background:rgba(192,144,80,.10);
-      border:1px solid rgba(192,144,80,.22);
-    }
-    .btn.review-ask{
-      background:rgba(0,164,166,.18);
-      border:1px solid rgba(0,164,166,.32);
-    }
+  .btn{
+    display:flex;align-items:center;justify-content:center;
+    padding:15px 14px;border-radius:var(--r-sm);
+    text-decoration:none;font-weight:700;
+    font-size:13px;letter-spacing:.6px;text-transform:uppercase;
+    border:2px solid transparent;
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+  }
 
-    /* Action bar */
-    .actionbar{
-      margin-top:16px;padding:14px 12px;border-radius:18px;
-      background:rgba(8,15,30,.55);
-      border:1px solid rgba(192,144,80,.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .act{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-      padding:12px 8px;border-radius:14px;text-decoration:none;color:#fff;
-      border:1px solid rgba(192,144,80,.14);
-      background:rgba(11,27,58,.40);
-      box-shadow:0 10px 22px rgba(0,0,0,.25);
-      -webkit-tap-highlight-color: transparent;
-      user-select:none;
-      min-height:82px;
-    }
-    .act svg{width:26px;height:26px;fill:#fff;opacity:.95}
-    .act span{font-size:12px;font-weight:900;letter-spacing:.2px}
-  </style>
+  /* BOOK A CALL → gold fill — the warm, primary invitation */
+  .btn.review-read{
+    background:var(--gold);
+    color:#fff;
+    border-color:var(--gold);
+  }
+
+  /* APPLY WITH DAWN → navy solid — the decisive action */
+  .btn.primary{
+    background:var(--navy);
+    color:#fff;
+    border-color:var(--navy);
+  }
+
+  /* REALTOR TOOLS (last .btn.primary) → navy outline — tools, secondary */
+  .cta .btn.primary:last-child{
+    background:transparent;
+    color:var(--navy);
+    border-color:var(--navy);
+  }
+
+  /* secondary and review-ask kept for structural completeness */
+  .btn.secondary{
+    background:var(--gold-soft);
+    color:var(--navy);
+    border-color:rgba(193,155,108,.35);
+  }
+  .btn.review-ask{
+    background:var(--gold-soft);
+    color:var(--navy);
+    border-color:rgba(193,155,108,.30);
+  }
+
+  /* cta-split layout (kept for other cards) */
+  .cta-split{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:10px;margin-top:16px;
+  }
+  .btn.small{padding:12px 10px;font-size:12px}
+
+  /* ── ACTION BAR — cream tiles, navy icons ───────────────────────── */
+  .actionbar{
+    margin:12px 14px 0;
+    padding:14px 10px;
+    border-radius:var(--r);
+    background:var(--white);
+    border:1px solid rgba(34,45,81,.07);
+    box-shadow:var(--shadow);
+  }
+  .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .act{
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:6px;
+    padding:14px 6px;border-radius:10px;
+    text-decoration:none;color:var(--navy);
+    border:1px solid rgba(34,45,81,.08);
+    background:var(--cream);
+    -webkit-tap-highlight-color:transparent;
+    user-select:none;
+    min-height:74px;
+  }
+  .act svg{width:22px;height:22px;fill:var(--navy);opacity:.80}
+  .act span{
+    font-size:10.5px;font-weight:700;
+    letter-spacing:.5px;text-transform:uppercase;
+    color:var(--navy);opacity:.75;
+  }
+</style>
 </head>
 
 <body>
